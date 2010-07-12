@@ -33,6 +33,7 @@ keys(Client, Pattern) ->
 	% NOTE: with binary-list conversion, timer:tc says 26000-30000 microseconds
 	case erldis_client:scall(Client, [<<"keys">>, Pattern]) of
 		[] -> [];
+		[K] when is_binary(K) -> K;
 		B -> B
 	end.
 
